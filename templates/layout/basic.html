@@ -1,25 +1,67 @@
-<!DOCTYPE html>
+{% load bootstrap4 %}
 {% load static %}
+<!DOCTYPE html>
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Главная - доска объявлений</title>
+    <meta name="viewport" content="width=device-width, initial-scale=l, shrink-to-fit=no">
+        <title>
+            {% block title %}
+                Главная - доска объявлений
+            {% endblock %}
+        </title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    {% bootstrap_javascript jquery='slim' %}
     </head>
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <body>
-    <hl>Объявления:</hl>
-    <nav>
-        <a href="{% url 'index' %}">Главная</a>
-        <a href="{% url 'add' %}">Добавить</a>
-        {% for rubrics in rubrics %}
-            <a href="/bboard/{{ rubric.pk }}">{{ rubrics.name }}</a>
-        {% endfor %}
-    </nav>
-    <section>
-        {% block content %}
-        {% endblock %}
-    </section>
+   <body class="container-fluid">
+        <header class="mЬ-4">
+            <h1 class="display-1 tехt-сеntеr">Объявления</h1>
+        </header>
+        <div class="row">
+            <ul class="col nav justify-content-end border">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Регистрация</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Профиль</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Мои объявления</a>
+                        <a class="dropdown-item" href="#">Изменить личные данные</a>
+                        <a class="dropdown-item" href="#">Изменить пароль</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Выйти</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Удалить</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Вход</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <nav class="col-md-auto nav flex-column border">
+                <a class="nav-link root" href="#">Главная</a>
+                <span class="nav-link root font-weight-bold">Недвижимость</span>
+                <a class="nav-link" href="#">Жилье</a>
+                <a class="nav-link" href="#">Склады</a>
+                <a class="nav-link" href="#">Гаражи</a>
+                <span class="nav-link root font-weight-bold">Транспорт</span>
+                <a class="nav-link" href="#">Легковой</a>
+                <a class="nav-link" href="#">Грузовой</a>
+            </nav>
+            <section class="col border py-2">
+                {% bootstrap_messages %}
+                {% block content %}
+                
+                {% endblock %}
+            </section>
+        </div>
+        <footer class="mt-3">
+            <p class="text-right font-italic">&copy; Малыхин Я.Л. 2019г.</p>
+        </footer>
     </body>
 </html>
