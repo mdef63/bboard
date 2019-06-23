@@ -20,5 +20,7 @@ from .views import *
 app_name = 'main'
 urlpatterns = [
     path('<str:page>/', other_page, name='other'),
-    path('', index, name='index')
+    path('', index, name='index'),
+    path('accounts/login/', MainLoginView.as_view(), name='login'),
+    path('accounts/profile', profile, name='profile')
 ]
