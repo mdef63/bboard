@@ -19,8 +19,14 @@ from .views import *
 
 app_name = 'main'
 urlpatterns = [
+    path('accounts/register/activate/<str:sign>/', user_activate, name='register_activate'),
+    path('account/register/done/', RegisterDoneView.as_view(), name='register_done'),
+    path('account/register/', RegisterUserView.as_view(), name='register'),
+    path('accounts/login/', BBLoginView.as_view(), name='login'),
+    path('accounts/profile/', profile, name='profile'),
+    path('account/logout/', BBLogoutView.as_view(), name='logout'),
+    path('account/change/', ChangeUserInfoView.as_view(), name='profile_change'),
+    path('account/password/change/', BBPasswordChangeView.as_view(), name='password_change'),
     path('<str:page>/', other_page, name='other'),
-    path('', index, name='index'),
-    path('accounts/login/', MainLoginView.as_view(), name='login'),
-    path('accounts/profile', profile, name='profile')
+    path('', index, name='index')
 ]
